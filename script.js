@@ -2,65 +2,82 @@
 setTimeout(() => {
   document.getElementById("loading").style.display = "none";
 
-  let savedKey = localStorage.getItem("ff_key");
-  if (savedKey) {
-    checkKey(savedKey);
-  } else {
-    document.getElementById("keyPopup").style.display = "flex";
-  }
+  let key = localStorage.getItem("ff_key");
+  if (key) checkKey(key);
+  else document.getElementById("keyPopup").style.display = "flex";
+
 }, 2000);
 
-// FAKE DATABASE KEY
+// KEY DATABASE
 let keys = {
-  "FF-1234": { expires: Date.now() + 3600000, active: true },
-  "FF-9999": { expires: Date.now() + 999999999, active: true }
+  "FF-1111": { exp: Date.now() + 3600000, active: true },
+  "FF-PRO": { exp: Date.now() + 999999999, active: true }
 };
 
-// SUBMIT KEY
+// SUBMIT
 function submitKey() {
   let key = document.getElementById("keyInput").value;
   checkKey(key);
 }
 
-// CHECK KEY
+// CHECK
 function checkKey(key) {
-  let data = keys[key];
+  let k = keys[key];
 
-  if (data && data.active && Date.now() < data.expires) {
+  if (k && k.active && Date.now() < k.exp) {
     localStorage.setItem("ff_key", key);
 
     document.getElementById("keyPopup").style.display = "none";
     document.getElementById("dashboard").classList.remove("hidden");
 
     flash("green");
+    toast("KEY ACTIVE");
   } else {
     flash("red");
-    document.getElementById("keyStatus").innerText = "Key sai hoặc hết hạn!";
+    toast("KEY SAI!");
   }
 }
 
 // GET KEY
 function getKey() {
-  alert("Chuyển sang link lấy key...");
-  window.location.href = "https://your-link.com";
+  fakeLoad(() => {
+    window.location.href = "https://your-link.com";
+  });
 }
 
-// EFFECT
-function toggleEffect(el) {
-  if (el.checked) toast("ON");
-  else toast("OFF");
+// TOGGLE
+function toggle(el, name) {
+  playSound();
+
+  if (el.checked) {
+    toast(name + " ON");
+  } else {
+    toast(name + " OFF");
+  }
 }
 
-// FOV
-function updateFOV(value) {
-  let fov = document.getElementById("fovCircle");
-  fov.style.width = value + "px";
-  fov.style.height = value + "px";
+// SOUND
+function playSound() {
+  document.getElementById("clickSound").play();
 }
 
-// BOOST
-function boost() {
-  toast("FPS BOOSTED 🚀");
+// SENS
+function setSens(type) {
+  let s = document.getElementById("sens");
+
+  if (type === "low") {
+    s.innerHTML = "DPI 300 | Fire 60";
+  }
+
+  if (type === "mid") {
+    s.innerHTML = "DPI 400 | Fire 70";
+  }
+
+  if (type === "high") {
+    s.innerHTML = "DPI 600 | Fire 80";
+  }
+
+  toast("Đã set độ nhạy");
 }
 
 // TOAST
@@ -74,7 +91,11 @@ function toast(msg) {
 // FLASH
 function flash(color) {
   document.body.style.background = color;
-  setTimeout(() => {
-    document.body.style.background = "#0a0a0f";
-  }, 200);
+  setTimeout(() => document.body.style.background = "#0d0d12", 200);
+}
+
+// FAKE LOAD
+function fakeLoad(cb) {
+  toast("Đang lấy key...");
+  setTimeout(cb, 2000);
 }
