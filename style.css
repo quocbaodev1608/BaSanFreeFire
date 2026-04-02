@@ -1,109 +1,48 @@
 body {
-  margin: 0;
-  font-family: Arial;
-  background: #0a0a0f;
-  color: white;
+  background: #0f0f14;
+  font-family: sans-serif;
 }
 
-/* LOADING */
-#loading {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* POPUP */
-.popup {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup-box {
-  background: #111;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px #0ff;
-}
-
-/* DASHBOARD */
-.hidden { display: none; }
-
-.title {
-  text-align: center;
-  color: cyan;
-  text-shadow: 0 0 10px cyan;
-}
-
-.menu {
-  padding: 10px;
-}
-
+/* BOX NHẸ */
 .box {
-  background: #111;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px purple;
+  background: #16161d;
+  margin: 8px;
+  padding: 8px;
+  border-radius: 15px;
+  box-shadow: 0 0 5px rgba(0,255,255,0.2);
 }
 
-/* SWITCH */
-.switch input { display: none; }
-.switch span {
-  width: 40px;
-  height: 20px;
-  background: gray;
-  display: inline-block;
+/* NÚT NHỎ + BO */
+button, select {
+  padding: 6px 10px;
   border-radius: 20px;
-  position: relative;
+  border: none;
+  background: #1f1f2a;
+  color: white;
+  margin-top: 5px;
+  font-size: 12px;
 }
-.switch span::after {
-  content: '';
-  width: 18px;
+
+/* SWITCH NHẸ */
+.switch span {
+  width: 34px;
   height: 18px;
-  background: white;
-  position: absolute;
-  left: 1px;
-  top: 1px;
-  border-radius: 50%;
-  transition: 0.3s;
-}
-.switch input:checked + span {
-  background: cyan;
-}
-.switch input:checked + span::after {
-  left: 20px;
 }
 
-/* FOV */
-#fovCircle {
-  position: fixed;
-  border: 2px solid red;
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.switch span::after {
+  width: 14px;
+  height: 14px;
 }
 
-/* TOAST */
-#toast {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: black;
-  padding: 10px;
-  border-radius: 5px;
-  display: none;
+/* TEXT NHẸ */
+h3 {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* ĐỘ NHẠY */
+#sensResult {
+  margin-top: 8px;
+  font-size: 12px;
+  color: cyan;
 }
