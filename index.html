@@ -1,41 +1,98 @@
-<div class="menu">
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>FF TOOL PRO MAX</title>
 
-  <div class="box">
-    <h3>Nhẹ Tâm</h3>
-    <label class="switch">
-      <input type="checkbox" onchange="toggleEffect(this,'Nhẹ Tâm')">
-      <span></span>
-    </label>
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="loading">
+  <div class="loader-box">
+    <h1>FF TOOL</h1>
+    <div class="loader"></div>
+  </div>
+</div>
+
+<!-- KEY -->
+<div id="keyPopup" class="popup">
+  <div class="popup-box">
+    <h2>ENTER KEY</h2>
+    <input id="keyInput" placeholder="FF-XXXX">
+    <button onclick="submitKey()">XÁC NHẬN</button>
+    <button onclick="getKey()">GET KEY</button>
+    <p id="keyStatus"></p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden">
+
+  <h1 class="title">⚡ FF TOOL PRO MAX</h1>
+
+  <!-- VIDEO -->
+  <div class="video">
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+    <button onclick="toast('Mở hướng dẫn')">Watch Tutorial</button>
   </div>
 
-  <div class="box">
-    <h3>Giảm Rung</h3>
-    <label class="switch">
-      <input type="checkbox" onchange="toggleEffect(this,'Giảm Rung')">
-      <span></span>
-    </label>
-  </div>
+  <!-- MENU -->
+  <div class="menu">
 
-  <div class="box">
-    <h3>Lố (Boost)</h3>
-    <label class="switch">
-      <input type="checkbox" onchange="toggleEffect(this,'Lố')">
-      <span></span>
-    </label>
-  </div>
+    <div class="box">
+      <span>Nhẹ Tâm</span>
+      <label class="switch">
+        <input type="checkbox" onchange="toggle(this,'Nhẹ Tâm')">
+        <span></span>
+      </label>
+    </div>
 
-  <!-- TAB ĐỘ NHẠY -->
-  <div class="box">
-    <h3>Độ Nhạy</h3>
+    <div class="box">
+      <span>Giảm Rung</span>
+      <label class="switch">
+        <input type="checkbox" onchange="toggle(this,'Giảm Rung')">
+        <span></span>
+      </label>
+    </div>
 
-    <select onchange="setSensitivity(this.value)">
-      <option value="">Chọn dòng máy</option>
-      <option value="low">Máy yếu</option>
-      <option value="mid">Máy tầm trung</option>
-      <option value="high">Máy mạnh</option>
-    </select>
+    <div class="box">
+      <span>Lố Boost</span>
+      <label class="switch">
+        <input type="checkbox" onchange="toggle(this,'Boost')">
+        <span></span>
+      </label>
+    </div>
 
-    <div id="sensResult"></div>
+    <!-- ĐỘ NHẠY -->
+    <div class="box column">
+      <span>Độ Nhạy</span>
+
+      <select onchange="setSens(this.value)">
+        <option value="">Chọn máy</option>
+        <option value="low">Máy yếu</option>
+        <option value="mid">Tầm trung</option>
+        <option value="high">Máy mạnh</option>
+      </select>
+
+      <div id="sens"></div>
+    </div>
+
   </div>
 
 </div>
+
+<!-- FOV -->
+<div id="circle"></div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- SOUND -->
+<audio id="clickSound" src="https://www.myinstants.com/media/sounds/mouse-click.mp3"></audio>
+
+</body>
+</html>
